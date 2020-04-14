@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'MyProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'billing',
+        'NAME': 'mrbilldb',
         'USER':'techie',  
         'PASSWORD':'techies2k',  
         'HOST':'localhost',  
