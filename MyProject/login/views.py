@@ -15,7 +15,6 @@ from datetime import datetime
 class LoginAPIView(APIView):
 
     def get(self, request):
- #       logindata = Login.objects.all()
         logindata = Login.objects.raw('Select id,login_id,password from login_details')
         serializer = LoginSerializer(logindata,many=True)
         return Response(serializer.data)
@@ -39,7 +38,6 @@ class LoginAPIView(APIView):
         #         data = '{ "data" : "Logged in Successfully", "status" : "success"}'
         #     else:
         #         data = '{ "data" : "Invalid Credentials","status" : "failure"}'
-        print("@@@@@@@@@@@@@@@@2 "+str(count))
         if str(count) == '1':
             data = '{ "data" : "Logged in Successfully", "status" : "success"}'
         else:
@@ -58,7 +56,6 @@ class SignUpView(APIView):
             # print("************************ "+str(encryptedpassword))
             # decryptedPassword = decrypt(requestValue["password"], encryptedpassword)
             # print(decryptedPassword)
-            print("json data "+str(requestValue))
             serializer = LoginSerializer(data=requestValue)
             if serializer.is_valid():
                 serializer.save()
