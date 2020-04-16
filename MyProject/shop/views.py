@@ -29,6 +29,16 @@ class ProductAPIView(APIView):
             data = '{ "data" : "Some Error Occured","status" : "failure"}'
             return Response(json.loads(data))
 
+@api_view(['GET','POST'])
+def product_searchList(request,productname):
+    if request.method == 'GET':
+        print("Select * from product where product_name LIKE '%"+productname+"%'")
+        productData = Product.objects.filter(product_name__contains=productname)
+        serializer = ProductSerializer(productData,many=True)
+        return Response(serializer.data)
+        
+
+
 class ProductAPIDetails(APIView):
 
     def get_object(self,id):
