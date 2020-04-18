@@ -11,13 +11,16 @@ from rest_framework.views import APIView
 import json
 from simplecrypt import encrypt, decrypt
 from datetime import datetime
+from .shopservice import ShopService
 
 class ProductAPIView(APIView):
 
     def get(self, request):
-        logindata = Product.objects.raw('Select * from product')
-        serializer = ProductSerializer(logindata,many=True)
-        return Response(serializer.data)
+        # object = ShopService()
+        productData = ShopService.getShopDetails()
+        # logindata = Product.objects.raw('Select * from product')
+        # serializer = ProductSerializer(logindata,many=True)
+        return Response(productData)
 
     def post(self, request):
         serializer = ProductSerializer(data=request.data)
