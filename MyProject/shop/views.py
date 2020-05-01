@@ -12,12 +12,13 @@ import json
 from simplecrypt import encrypt, decrypt
 from datetime import datetime
 from .shopservice import ShopService
-
+from PIL import Image
+from io import BytesIO
 class ProductAPIView(APIView):
 
     def get(self, request):
         # object = ShopService()
-        productData = ShopService.getShopDetails()
+        productData = ShopService.getProductDetails()
         # logindata = Product.objects.raw('Select * from product')
         # serializer = ProductSerializer(logindata,many=True)
         return Response(productData)
@@ -39,6 +40,14 @@ def product_searchList(request,productname):
         productData = Product.objects.filter(product_name__contains=productname)
         serializer = ProductSerializer(productData,many=True)
         return Response(serializer.data)
+
+
+@api_view(['GET','POST'])
+def image_view(request):
+    if request.method == 'GET':
+        response = "/home/genius/Downloads/Screenshot from 2020-04-17 21-21-47.png"
+        img = Image.open(response)
+        return HttpResponse(img, content_type="image/png")
         
 
 

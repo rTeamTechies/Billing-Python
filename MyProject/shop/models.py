@@ -16,6 +16,7 @@ class Product(models.Model):
     stock_alert_qty = models.IntegerField()
     product_desc = models.CharField(max_length=100, null=True, blank=True)
     not_for_sale = models.SmallIntegerField(default=0)
+    active_flag =  models.CharField(max_length=100,default='1')
     shop_id = models.IntegerField()
     parent_shop_id = models.IntegerField()
     tax_type = models.CharField(max_length=100)
@@ -34,3 +35,4 @@ class Product(models.Model):
     #image = models.ImageField(upload_to = 'product_logo', blank = True)
     class Meta:  
         db_table = "product"
+        

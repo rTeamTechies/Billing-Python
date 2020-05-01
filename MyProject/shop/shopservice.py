@@ -1,10 +1,21 @@
 from rest_framework.parsers import JSONParser
 from .models import Product
-from .serializers import ProductSerializer
+from .ShopModels import ShopDetails, ShopContactDetails
+from .serializers import ProductSerializer, ShopDetailsSerializer, ShopContactDetailsSerializer
 import json
 
 class ShopService:
+    def getProductDetails():
+        productdata = Product.objects.raw('Select * from product')
+        serializer = ProductSerializer(productdata,many=True)
+        return serializer.data
+
     def getShopDetails():
-        logindata = Product.objects.raw('Select * from product')
-        serializer = ProductSerializer(logindata,many=True)
+        shopdata = ShopDetails.objects.raw('Select * from shop_dtls')
+        serializer = ShopDetailsSerializer(shopdata,many=True)
+        return serializer.data
+
+    def getShopContactDetails():
+        shopdata = ShopContactDetails.objects.raw('Select * from shop_contact_dtls')
+        serializer = ShopContactDetailsSerializer(shopdata,many=True)
         return serializer.data

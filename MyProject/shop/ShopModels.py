@@ -1,0 +1,50 @@
+from django.db import models
+
+class ShopDetails(models.Model):
+    shop_id = models.AutoField(primary_key=True,auto_created = True)
+    parent_shop_id = models.IntegerField()
+    shop_reg_number = models.CharField(max_length=255, null=True, blank=True)
+    shop_name = models.CharField(max_length=100, null=True, blank=True)
+    start_dt = models.DateField(auto_now_add=True, null=True, blank=True)  
+    shop_logo =  models.CharField(max_length=100, null=True, blank=True)
+    shop_gstno = models.CharField(max_length=100, null=True, blank=True)
+    shop_address =  models.CharField(max_length=100, null=True, blank=True)
+    shop_phone1 =  models.CharField(max_length=100, null=True, blank=True)
+    shop_phone2 = models.CharField(max_length=100, null=True, blank=True)
+    shop_email =  models.CharField(max_length=100, null=True, blank=True)
+    shop_website = models.CharField(max_length=100, null=True, blank=True)
+    active_flag =  models.CharField(max_length=100,default='1')
+    created_dt =  models.DateTimeField(auto_now_add=True)
+    created_by = models.CharField(max_length=100,default='SYSTEM')
+    updated_dt = models.DateTimeField(auto_now_add=True)  
+    updated_by =  models.CharField(max_length=100,default='SYSTEM')
+    class Meta:  
+        db_table = "shop_dtls"
+
+class ShopContactDetails(models.Model):
+    contact_id = models.AutoField(primary_key=True,auto_created = True)
+    contact_type = models.CharField(max_length=255)
+    contact_name = models.CharField(max_length=255)
+    email = models.CharField(max_length=255, null=True, blank=True)
+    mobile = models.CharField(max_length=255, null=True, blank=True) 
+    alternate_mobile = models.CharField(max_length=255, null=True, blank=True)
+    landline = models.CharField(max_length=255, null=True, blank=True)
+    city =  models.CharField(max_length=255, null=True, blank=True)
+    state =  models.CharField(max_length=255, null=True, blank=True)
+    country =models.CharField(max_length=255, null=True, blank=True)
+    landmark =  models.CharField(max_length=255, null=True, blank=True)
+    opening_balance =  models.FloatField(null=True, blank=True)
+    shop_id = models.IntegerField()
+    parent_shop_id = models.IntegerField()
+    credit_limit =  models.FloatField(null=True, blank=True)
+    active_flag =  models.CharField(max_length=100,default='1')
+    customer_group = models.CharField(max_length=255, null=True, blank=True)
+    business_name = models.CharField(max_length=255, null=True, blank=True)
+    gstn = models.CharField(max_length=255, null=True, blank=True)
+    tax_id = models.CharField(max_length=255, null=True, blank=True)
+    created_dt =  models.DateTimeField(auto_now_add=True)
+    created_by = models.CharField(max_length=100,default='SYSTEM')
+    updated_dt = models.DateTimeField(auto_now_add=True)  
+    updated_by =  models.CharField(max_length=100,default='SYSTEM')
+    class Meta:  
+        db_table = "shop_contact_dtls"
