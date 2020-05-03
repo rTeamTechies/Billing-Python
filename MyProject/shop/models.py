@@ -35,4 +35,21 @@ class Product(models.Model):
     #image = models.ImageField(upload_to = 'product_logo', blank = True)
     class Meta:  
         db_table = "product"
+
+
+class ProductStockDetails(models.Model):  
+    stock_id = models.AutoField(primary_key=True,auto_created = True)
+    product_id = models.IntegerField()  
+    product_sku = models.CharField(max_length=255, null=True, blank=True)
+    tot_qty_in_stock = models.FloatField()
+    tot_qty_sold = models.FloatField()
+    tot_qty_remaining =  models.FloatField()
+    tot_qty_returned =  models.FloatField()
+    tot_qty_adjusted =  models.FloatField()
+    created_dt =  models.DateTimeField(auto_now_add=True)
+    created_by = models.CharField(max_length=100,default='SYSTEM')
+    updated_dt = models.DateTimeField(auto_now_add=True)  
+    updated_by =  models.CharField(max_length=100,default='SYSTEM')
+    class Meta:  
+        db_table = "product_stock_dtls"
         
